@@ -1,0 +1,37 @@
+# ---------------------------------------------------------------------------
+# Exovision ML pipeline — Python dependencies
+# ---------------------------------------------------------------------------
+# Core (required). Pinned to the versions this project was verified against.
+numpy==2.5.2
+scipy==1.18.1
+pandas==3.0.5
+scikit-learn==1.9.0
+xgboost==3.4.1
+astropy==8.0.1
+joblib==1.6.0
+matplotlib==3.11.1
+tqdm==4.70.0
+PyYAML==6.0.3
+
+# API layer (required for `uvicorn exovision_api.main:app`)
+fastapi==0.141.1
+uvicorn[standard]==0.52.4
+pydantic==2.13.5
+
+# ---------------------------------------------------------------------------
+# Optional science extras. The pipeline detects each at import time and falls
+# back to a pure-numpy implementation when missing, so `pip install -r
+# requirements.txt` alone already gives you a working ~80% pipeline.
+#
+#   transitleastsquares  TLS periodogram refinement   (falls back to BLS-only)
+#   batman-package       analytic Mandel-Agol transit (falls back to trapezoid)
+#   emcee                MCMC posterior sampling      (falls back to LM + Fisher)
+#   celerite2            GP stellar-variability model (falls back to biweight)
+#   corner               posterior corner plots       (optional plotting only)
+#   lightkurve           download real Kepler/TESS LCs (optional, needs network)
+#
+# batman-package and transitleastsquares compile C extensions, so they need
+# Python headers present (Fedora: `sudo dnf install python3-devel`,
+# Debian/Ubuntu: `sudo apt install python3-dev`). Install with:
+#     pip install -r requirements-extras.txt
+# ---------------------------------------------------------------------------
